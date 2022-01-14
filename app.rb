@@ -3,12 +3,13 @@ require_relative 'models/text_analyzer.rb'
 
 class App < Sinatra::Base
   get '/' do
-    erb :index
+    erb :index #renders index.erb
   end
 
   post '/' do
-    text_from_user = params[:user_text]
 
-    erb :results
+    @analyzed_text = TextAnalyzer.new(params[:user_text])
+
+    erb :results #receives form data through parems and renders the result page
   end
 end
